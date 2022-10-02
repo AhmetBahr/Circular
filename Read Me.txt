@@ -2,3 +2,4 @@ First Update: Spawner enemy
 Sec. Update: RndCollar
 3. Update: Prebs karakterlerin kodları yazıldı atıldı 
 4. Update: Menü ve oyun içi karakterlerin kodları yazıldı atıldı
+5. Update: Oyun içi ve menü müzikleri eklendi, çalışması için kodları yazıldı
