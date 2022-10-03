@@ -4,3 +4,4 @@ Sec. Update: RndCollar
 4. Update: Menü ve oyun içi karakterlerin kodları yazıldı atıldı
 5. Update: Oyun içi ve menü müzikleri eklendi, çalışması için kodları yazıldı
 6. Update: Menü, Canvas kodları yazıldı (bir kaç kod oyun içinde kullanılmıyor)
+7. Update: Gamemanager, geçiş reklamları baner reklamı kodları yazıldı. 
