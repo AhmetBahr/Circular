@@ -6,5 +6,10 @@ Sec. Update: RndCollar
 6. Update: Menü, Canvas kodları yazıldı (bir kaç kod oyun içinde kullanılmıyor)
 7. Update: Gamemanager, geçiş reklamları baner reklamı kodları yazıldı.
 
-Update 8.: Oyuna sıfırdan remake yapılmaya başlandı Karakter hareket kodları yazıldı 
- 
+Circular projesini bir yıl sonra sıfırdan yeniden yapmaya başladım ve aynı kodları remakliyorum 
+Update 1: Oyuna sıfırdan remake yapılmaya başlandı Karakter hareket kodları yazıldı 
+Update 2: Market mekaniği ve bg kodları yapıldı 
+Update 3: Arka plan müziği kodları yazıldı, düşman kodları yazıldı  
+Update 4: Menu Scriptleri ve Spawn kodları yazıldı 
+Update 5: Pausemenu ve karakter ses kodları eklendi 
+Update 6: 
