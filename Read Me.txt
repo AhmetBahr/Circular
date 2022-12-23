@@ -12,4 +12,4 @@ Update 2: Market mekaniği ve bg kodları yapıldı
 Update 3: Arka plan müziği kodları yazıldı, düşman kodları yazıldı  
 Update 4: Menu Scriptleri ve Spawn kodları yazıldı 
 Update 5: Pausemenu ve karakter ses kodları eklendi 
-Update 6: 
+Update 6: PlayerSpawner ve Point kodları elden geçirildi 
