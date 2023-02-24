@@ -51,7 +51,7 @@ public class BallSelect : MonoBehaviour
 
     void Update()
     {
-        if (PlayerPrefs.GetInt("Gems") < 50)
+        if (PlayerPrefs.GetInt("Gems") < 50)  //ÜRÜN FÝYATI
             unlockButton.interactable = false;
         else 
             unlockButton.interactable = true;   

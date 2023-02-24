@@ -5,17 +5,16 @@ using UnityEngine;
 public class PlayerSount : MonoBehaviour
 {
 
-    public static AudioClip Wsound,Dsound,Psound,Csound,C2sound;
+    public static AudioClip point_sound, swing_sound,expo_sound;
     static AudioSource audiosoruce;
 
     void Start()
     {
 
-        Wsound = Resources.Load<AudioClip>("W2");
-        Psound = Resources.Load<AudioClip>("Point");
-        Dsound = Resources.Load<AudioClip>("Dead");
-        Csound = Resources.Load<AudioClip>("Change");
-        C2sound = Resources.Load<AudioClip>("Click");
+
+        point_sound = Resources.Load<AudioClip>("bup_wav");
+        swing_sound = Resources.Load<AudioClip>("Swing");
+        expo_sound = Resources.Load<AudioClip>("expo");
 
         audiosoruce = GetComponent<AudioSource>();
 
@@ -26,21 +25,17 @@ public class PlayerSount : MonoBehaviour
 
         switch (clip)
         {
-            case "W":
-                audiosoruce.PlayOneShot(Wsound);
+            case "point":
+                audiosoruce.PlayOneShot(point_sound);
                 break;
-            case "D":
-                audiosoruce.PlayOneShot(Dsound);
+            case "swing":
+                audiosoruce.PlayOneShot(swing_sound);
                 break;
-            case "P":
-                audiosoruce.PlayOneShot(Psound);
+            case "expoo":
+                audiosoruce.PlayOneShot(expo_sound);
                 break;
-            case "C":
-                audiosoruce.PlayOneShot(Csound);
-                break;
-            case "Cil":
-                audiosoruce.PlayOneShot(C2sound);
-                break;
+
+
 
 
         }

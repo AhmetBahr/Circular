@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SocialPlatforms.Impl;
 
 
 public class PlayerMovie : MonoBehaviour
@@ -16,7 +17,7 @@ public class PlayerMovie : MonoBehaviour
     int yon = 1;
     int can;
     int bgInt;
-
+    int gems;
 
 
     public int Score;
@@ -30,7 +31,7 @@ public class PlayerMovie : MonoBehaviour
 
     void Start()
     {
-        referanskod1 = GameObject.Find("Background1").GetComponent<BackGroundColor>();
+    //    referanskod1 = GameObject.Find("Background1").GetComponent<BackGroundColor>();
         referanskod2 = GameObject.Find("Manager").GetComponent<ManuScript>();
         Score = 0;
         can = 2;
@@ -53,7 +54,7 @@ public class PlayerMovie : MonoBehaviour
         float y = Mathf.Sin(timeCounter) * height;
         float z = -3;
 
-        transform.position = new Vector3((15 * x) / 20, (15 * y / 20), z);
+        transform.position = new Vector3((17 * x) / 20, (17 * y / 20), z);
 
         if (Input.GetKeyDown(KeyCode.W))
         {
@@ -64,6 +65,7 @@ public class PlayerMovie : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             yon *= -1;
+            PlayerSount.PlayerSound("swing");
 
         }
         if (Input.GetKeyDown(KeyCode.A))
@@ -77,7 +79,7 @@ public class PlayerMovie : MonoBehaviour
         {
             bgInt = 0;
             Debug.Log("bg1 " + bgInt);
-            referanskod1.BgRandomColor();
+         //   referanskod1.BgRandomColor();
         }
     }
 
@@ -86,37 +88,33 @@ public class PlayerMovie : MonoBehaviour
         if (collision.transform.tag == "Point")
         {
             SkorUp();
+            PlayerSount.PlayerSound("point");
          
         }
 
 
-        if (collision.transform.tag == "Block")
+        if (collision.transform.tag == "Enemy")
         {
             deat();
+            PlayerSount.PlayerSound("expoo");
         }
     }
 
+    
+
     public void deat()
     {
-        can--;
-        if (PlayerPrefs.GetFloat("HighScore") < Score )
-        {
-            PlayerPrefs.SetFloat("HighScore", Score );
-        }
-
-        if (can == 0)
-        {
-            referanskod2.death();
-            Destroy(gameObject);
+        referanskod2.death();
+        Destroy(gameObject);
             
-        }
+       
     }
 
 
     public void SkorUp()
     {
-        bgInt++;
-
+        // bgInt++;
+        Score++;
         referanskod2.scoreUp();
     }
 

@@ -14,11 +14,12 @@ public class PointScript : MonoBehaviour
 
     private float xAngle, yAngle, zAngle;
 
+    VibratorBT Referans_Vibra;
 
-  
 
     void Start()
     {
+        Referans_Vibra = GameObject.Find("Manager").GetComponent<VibratorBT>();
         rb = this.GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(speed, 0);
     }
@@ -44,8 +45,18 @@ public class PointScript : MonoBehaviour
     {
         if (collision.transform.tag == "Player")
         {
-          
             Destroy(gameObject);
+            if (Referans_Vibra.vibra == true)
+            {
+                Vibrator.Vibrate(100);
+           //     Debug.Log("Titrettin beni");
+            }
+            else
+            {
+
+            }
+
+          
         }
 
 
