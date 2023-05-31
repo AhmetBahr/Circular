@@ -46,20 +46,15 @@ public class PointScript : MonoBehaviour
         if (collision.transform.tag == "Player")
         {
            // Destroy(gameObject);
-
-            gameObject.SetActive(false);
+           
 
             if (Referans_Vibra.vibra == true)
             {
                 Vibrator.Vibrate(100);
-           //     Debug.Log("Titrettin beni");
-            }
-            else
-            {
-
             }
 
-          
+            gameObject.SetActive(false);
+
         }
 
 

@@ -7,9 +7,9 @@ using DG.Tweening;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private GameObject enemy;
-    private float speed = 1.5f;
+    [SerializeField] private float speed = 1.5f;
     [SerializeField] private Rigidbody2D rb;
-    //private float backspeed = -5f;
+
     private float turnInt;
     private float RandomInt;
 
@@ -30,9 +30,6 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         turnInt += Time.deltaTime;
-
-
-       // Debug.Log(RandomInt);
 
         if (turnInt >= RandomInt)
         {

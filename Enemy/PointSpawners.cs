@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PointSpawners : MonoBehaviour
 {
-    [SerializeField] private GameObject[] Points;
+    [SerializeField] private GameObject[] Points_1;
+    [SerializeField] private GameObject[] Points_2;
+
 
     private int randPoint;
     private bool isStart = false;
@@ -14,22 +16,35 @@ public class PointSpawners : MonoBehaviour
     public float _BoundsMinX, _BoundsMaxX;
     public float _BoundsMinY, _BoundsMaxY;
 
+    [SerializeField] private int currentScore;
+
+    ManuScript mncript;
+
     void Start()
     {
-
+        mncript = GameObject.Find("Manager").GetComponent<ManuScript>();
+        currentScore = mncript.score;
     }
 
 
     void Update()
     {
-  
+        currentScore = mncript.score;
+
     }
 
 
-    void SpawnObject()
+    void SpawnObject_1()
     {
         Vector2 newSpawn = new Vector2(Random.Range(_BoundsMinX, _BoundsMaxX), Random.Range(_BoundsMinY, _BoundsMaxY));
-        Instantiate(Points[randPoint], newSpawn, Quaternion.identity);
+        Instantiate(Points_1[randPoint], newSpawn, Quaternion.identity);
+
+
+    }
+    void SpawnObject_2()
+    {
+        Vector2 newSpawn = new Vector2(Random.Range(_BoundsMinX, _BoundsMaxX), Random.Range(_BoundsMinY, _BoundsMaxY));
+        Instantiate(Points_2[randPoint], newSpawn, Quaternion.identity);
 
 
     }
@@ -38,7 +53,16 @@ public class PointSpawners : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(respawnTime);
-            SpawnObject();
+
+            if(currentScore <= 30)
+            {
+                SpawnObject_1();
+            }
+            if(currentScore > 30) 
+            {
+                SpawnObject_2();
+            }
+
         }
 
     }
