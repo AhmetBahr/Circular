@@ -10,33 +10,43 @@ using UnityEngine.UI;
 
 public class ManuScript : MonoBehaviour
 {
+    [Header("Panels")]
+    [SerializeField] private RectTransform MainMenu;
+    [SerializeField] private RectTransform MarketMenu;
+    [SerializeField] private RectTransform TextCanvas;
+    [SerializeField] private RectTransform DeathMenu;
+    [SerializeField] private RectTransform PauseCanvas;
+    [SerializeField] private RectTransform SettingsCanvas;
 
-    public RectTransform MainMenu, MarketMenu,TextCanvas,DeathMenu,PauseCanvas, SettingsCanvas;
+    [Header("Texts")]
     public TMP_Text Hgscore;
     public TMP_Text Death_Hgscore;
     public TMP_Text PlayText;
     public TMP_Text gems;
 
+    [Header("Button")]
     public Button tapToPlay;
 
-
-
-    int gem;
+    private int gem;
     public int score;
 
+
+    [Header("Referans")]
     PlayerSpawner referanskod3;
     PauseControl Referasn_PauseCont;
-
     public RewardAdmob AM;
+
 
 
 
     void Start()
     {
+
         int score = 0;
         updateHighScoreText();
         Referasn_PauseCont = GameObject.Find("Manager").GetComponent<PauseControl>();
         Referasn_PauseCont = GameObject.Find("Manager").GetComponent<PauseControl>();
+        
 
 
         gems.text = PlayerPrefs.GetInt("Gems",0).ToString();
@@ -46,7 +56,6 @@ public class ManuScript : MonoBehaviour
 
     void Update()
     {
-
     }
 
     public void MarketMenuOn()
@@ -206,5 +215,7 @@ public class ManuScript : MonoBehaviour
 
         Debug.Log("Get gems");
     }
+
+
 
 }
