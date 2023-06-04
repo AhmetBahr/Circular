@@ -9,7 +9,7 @@ public class VibratorBT : MonoBehaviour
     [SerializeField] Image vibraOn;
     [SerializeField] Image vibraOff , vibraOff_Line;
     public bool vibra = false;
-    public int vibraInt;
+
 
     void Start()
     {
@@ -30,12 +30,12 @@ public class VibratorBT : MonoBehaviour
         if (vibra == false)
         {
             vibra = true;
-       //     vibraInt = 1;
+     
         }
         else
         {
             vibra = false;
-        //    vibraInt= 0;
+     
         }
         Save();
         UpdateButtonIcon();

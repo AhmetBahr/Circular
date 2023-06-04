@@ -12,11 +12,10 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject[] EnemyObject_4;
     [SerializeField] private GameObject[] EnemyObject_5;
 
-    
+    [SerializeField] private float respawnTime = 3f;
 
     private bool isStart = false;
     
-    private float respawnTime = 3f;
 
     public float _BoundsMinX, _BoundsMaxX;
     public float _BoundsMinY, _BoundsMaxY;

@@ -134,14 +134,16 @@ public class ManuScript : MonoBehaviour
 
     public void settingsOn()
     {
-        SettingsCanvas.DOAnchorPos(new Vector2(0, 0), 0.5f);
-
+        SettingsCanvas.DOAnchorPos(new Vector2(0, 0), 0.8f);
+        MainMenu.DOAnchorPos(new Vector2(0, -2500), 0.8f);
+        TextCanvas.DOAnchorPos(new Vector2(0, 2500), 0.8f);
     }
 
     public void settingsOff()
     {
         SettingsCanvas.DOAnchorPos(new Vector2(-1200,0), 0.5f);
-
+        MainMenu.DOAnchorPos(new Vector2(0, 0), 0.8f);
+        TextCanvas.DOAnchorPos(new Vector2(0, -0), 0.8f);
     }
 
     public void scoreUp()

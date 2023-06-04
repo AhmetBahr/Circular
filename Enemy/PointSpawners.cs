@@ -11,7 +11,7 @@ public class PointSpawners : MonoBehaviour
     private int randPoint;
     private bool isStart = false;
 
-    private float respawnTime = 4f;
+    private float respawnTime = 4.5f;
 
     public float _BoundsMinX, _BoundsMaxX;
     public float _BoundsMinY, _BoundsMaxY;
@@ -54,11 +54,11 @@ public class PointSpawners : MonoBehaviour
         {
             yield return new WaitForSeconds(respawnTime);
 
-            if(currentScore <= 30)
+            if(currentScore <= 40)
             {
                 SpawnObject_1();
             }
-            if(currentScore > 30) 
+            if(currentScore > 40) 
             {
                 SpawnObject_2();
             }

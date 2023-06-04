@@ -6,7 +6,7 @@ public class TapAnimation : MonoBehaviour
 {
     [Header("Animation")]
     public Animator anim_Tap;
-    private float animStartTime = 7;
+    private float animStartTime = 8;
     
     
     

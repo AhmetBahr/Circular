@@ -1,23 +1,129 @@
 using UnityEngine;
+using DG.Tweening;
+using System.Collections;
+using System.Threading;
+using UnityEngine.UI;
+
 
 public class Tutorial_move : MonoBehaviour
 {
-    private float speed = 1.1f;
-    [SerializeField] private Rigidbody2D rb;
+    [Header("Core")]
+    [SerializeField] private float waitingTime;
+    [SerializeField] private bool ShowTuto;
+
+    [Header("Object")]
+    [SerializeField] private RectTransform toptuto;
+    [SerializeField] private RectTransform bottuto;
+    [SerializeField] Image Line;
 
 
-    public void Movestart()
+    void Start()
     {
-        rb = this.GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector2(speed, 0);
+        if (!PlayerPrefs.HasKey("show"))
+        {
+            PlayerPrefs.SetInt("show", 0);
+            Load();
+        }
+        else
+        {
+            Load();
+        }
+        UpdateButtonIcon();
+       
+    }
 
-        Destroy(gameObject, 10);
+    private void Update()
+    {
+       ImageController();
+    }
+
+    public void UpTutorial()
+    {
+      
+        toptuto.DOAnchorPos(new Vector2(0, 700), 1.5f);
+
+        _ = StartCoroutine(topBack());
 
     }
 
+    public void BotTutorial()
+    {
 
-   
+        bottuto.DOAnchorPos(new Vector2(0, -530), 1.5f);
 
-    
-   
+        _ = StartCoroutine(BotBack());
+
+    }
+
+    IEnumerator topBack()
+    {
+        Debug.Log("Geri Donuyor");
+        yield return new WaitForSeconds(waitingTime);
+
+        toptuto.DOAnchorPos(new Vector2(0, 1500), 1.5f);
+
+    }
+
+    IEnumerator BotBack()
+    {
+        Debug.Log("Geri Donuyor");
+        yield return new WaitForSeconds(waitingTime);
+
+        bottuto.DOAnchorPos(new Vector2(0, -1500), 1.5f);
+
+    }
+
+    public void OnpressTuto()
+    {
+        if (ShowTuto == false)
+        {
+            ShowTuto = true;
+          
+
+        }
+        else
+        {
+            ShowTuto = false;
+           
+        }
+        Save();
+        UpdateButtonIcon();
+    }
+    private void UpdateButtonIcon()
+    {
+        if (ShowTuto == false)
+        {
+            Line.enabled = true;
+        }
+        else
+        {
+            Line.enabled = false;
+        }
+
+    }
+
+    private void ImageController()
+    {
+        if (ShowTuto == true)
+        {
+            toptuto.gameObject.SetActive(true);
+            bottuto.gameObject.SetActive(true);
+        }
+
+        if (ShowTuto == false)
+        {
+            toptuto.gameObject.SetActive(false);
+            bottuto.gameObject.SetActive(false);
+        }
+    }
+
+    private void Load()
+    {
+        ShowTuto = PlayerPrefs.GetInt("show") == 1;
+    }
+    private void Save()
+    {
+        PlayerPrefs.SetInt("show", ShowTuto ? 1 : 0);
+    }
+
 }
