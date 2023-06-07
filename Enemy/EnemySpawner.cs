@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [Header("Object")]
     [SerializeField] private GameObject[] EnemyObject_1;
     [SerializeField] private GameObject[] EnemyObject_2;
     [SerializeField] private GameObject[] EnemyObject_3;
@@ -15,10 +16,12 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float respawnTime = 3f;
 
     private bool isStart = false;
-    
 
-    public float _BoundsMinX, _BoundsMaxX;
-    public float _BoundsMinY, _BoundsMaxY;
+    [Header("Transform")]
+    [SerializeField] private float _BoundsMinX;
+    [SerializeField] private float _BoundsMaxX;
+    [SerializeField] private float _BoundsMinY;
+    [SerializeField] private float _BoundsMaxY;
 
 
     [SerializeField] private int currentScore;

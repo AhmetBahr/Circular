@@ -22,7 +22,7 @@ public class Enemy_Basic : MonoBehaviour
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector2(speed, 0);
+        rb.velocity = new Vector2(0, -speed);
        
         if(isX)
         enemy.transform.Rotate( new Vector3(0, 0, 90)); 

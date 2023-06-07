@@ -21,7 +21,7 @@ public class PointScript : MonoBehaviour
     {
         Referans_Vibra = GameObject.Find("Manager").GetComponent<VibratorBT>();
         rb = this.GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector2(speed, 0);
+        rb.velocity = new Vector2(0, -speed);
     }
 
     void Update()

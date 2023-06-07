@@ -1,7 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
 using System.Collections;
-using System.Threading;
 using UnityEngine.UI;
 
 
@@ -21,7 +20,7 @@ public class Tutorial_move : MonoBehaviour
     {
         if (!PlayerPrefs.HasKey("show"))
         {
-            PlayerPrefs.SetInt("show", 0);
+            PlayerPrefs.SetInt("show", 1);
             Load();
         }
         else
@@ -57,7 +56,6 @@ public class Tutorial_move : MonoBehaviour
 
     IEnumerator topBack()
     {
-        Debug.Log("Geri Donuyor");
         yield return new WaitForSeconds(waitingTime);
 
         toptuto.DOAnchorPos(new Vector2(0, 1500), 1.5f);
@@ -66,7 +64,6 @@ public class Tutorial_move : MonoBehaviour
 
     IEnumerator BotBack()
     {
-        Debug.Log("Geri Donuyor");
         yield return new WaitForSeconds(waitingTime);
 
         bottuto.DOAnchorPos(new Vector2(0, -1500), 1.5f);
@@ -126,4 +123,5 @@ public class Tutorial_move : MonoBehaviour
         PlayerPrefs.SetInt("show", ShowTuto ? 1 : 0);
     }
 
+ 
 }
