@@ -12,10 +12,13 @@ public class PlayerMovie : MonoBehaviour
     int can;
     int gems;
 
+    [SerializeField] private int health;
+
 
     public int Score;
 
     ManuScript referanskod2;
+    Tail tail;
 
 
     bool isDeath;
@@ -23,6 +26,8 @@ public class PlayerMovie : MonoBehaviour
     void Start()
     {
         referanskod2 = GameObject.Find("Manager").GetComponent<ManuScript>();
+        tail = GameObject.Find("Tail").GetComponent<Tail>();
+
         Score = 0;
         can = 2;
     }
@@ -30,7 +35,11 @@ public class PlayerMovie : MonoBehaviour
 
     void Update()
     {
-       
+        if (health > 2)
+        {
+            health--;
+            tail.totalScore = 0;
+        }
 
         if (yon == 1)
             timeCounter += Time.deltaTime * speed;
@@ -80,12 +89,26 @@ public class PlayerMovie : MonoBehaviour
 
     public void deat()
     {
-        referanskod2.death();
-        Destroy(gameObject);
+        if(health <= 0)
+        {
+            referanskod2.death();
+            Destroy(gameObject);
+        }
+
+        health--;
+       
             
        
     }
 
+    public void TakeShield()
+    {
+
+
+        health++;
+        Debug.Log(health);
+    }
+    
 
     public void SkorUp()
     {

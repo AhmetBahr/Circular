@@ -27,15 +27,15 @@ public class PlayerSount : MonoBehaviour
         {
             case "point":
                audiosoruce.PlayOneShot(point_sound);
-                Debug.Log("Point");
+              //  Debug.Log("Point");
                 break;
             case "swing":
                audiosoruce.PlayOneShot(swing_sound);
-               Debug.Log("swing");
+              // Debug.Log("swing");
                 break;
             case "expoo":
                 audiosoruce.PlayOneShot(expo_sound);
-                Debug.Log("expo");
+              //  Debug.Log("expo");
                 break;
 
 
