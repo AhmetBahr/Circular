@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
+
 public class ManuScript : MonoBehaviour
 {
     [Header("Panels")]
@@ -39,6 +40,10 @@ public class ManuScript : MonoBehaviour
     Tail tail;
 
 
+    [Header("Tutorial")]
+    [SerializeField] private RectTransform tutorialMenu;
+    [SerializeField] private RectTransform tutorialSettings;
+
 
 
     void Start()
@@ -49,15 +54,16 @@ public class ManuScript : MonoBehaviour
         Referasn_PauseCont = GameObject.Find("Manager").GetComponent<PauseControl>();
         tail = GameObject.Find("Tail").GetComponent<Tail>();
 
-
+        Debug.Log( "Bu da prefs " + PlayerPrefs.GetInt("Tutorial"));
 
         gems.text = PlayerPrefs.GetInt("Gems",0).ToString();
 
-
+        tutoCanvas();
     }
 
     void Update()
     {
+        
     }
 
     public void MarketMenuOn()
@@ -189,6 +195,13 @@ public class ManuScript : MonoBehaviour
 
     }
 
+    public void scoreUp5()
+    {
+        PlayerPrefs.SetInt("Gems", PlayerPrefs.GetInt("Gems", 0) + 10);
+        //Gem animation
+
+    }
+
 
     public void Shop()
     {
@@ -226,5 +239,32 @@ public class ManuScript : MonoBehaviour
     }
 
 
+
+    private void tutoCanvas()
+    {
+        if(PlayerPrefs.GetInt("Tutorial") < 1)
+        {
+            tutorialMenu.DOAnchorPos(new Vector2(0, 0), 0.2f);
+
+        }
+    }
+    public void tutorialSettingsButton()
+    {
+
+        tutorialMenu.DOAnchorPos(new Vector2(1500, 0), 0.8f);
+        tutorialSettings.DOAnchorPos(new Vector2(0, 0), 0.8f);
+        MainMenu.DOAnchorPos(new Vector2(0, -2500), 0.8f);
+        TextCanvas.DOAnchorPos(new Vector2(0, 2500), 0.8f);
+        SettingsCanvas.DOAnchorPos(new Vector2(0, 0), 0.8f);
+
+
+    }
+
+
+    public void UploadTutorial()
+    {
+        PlayerPrefs.SetInt("Tutorial", 5);
+        SceneManager.LoadScene("Tutorial");
+    }
 
 }

@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tail : MonoBehaviour
+public class TutorailTail : MonoBehaviour
 {
-
     [SerializeField] public int currentScore;
     [SerializeField] public int scoreForheard;
 
@@ -14,15 +13,16 @@ public class Tail : MonoBehaviour
     [SerializeField] public float tailRender;
     [SerializeField] private TrailRenderer trRen;
 
-    [SerializeField] private GameObject[] blurs; 
+    [SerializeField] private GameObject[] blurs;
 
-    ManuScript Mnscrp;
-    PlayerMovie plyrMov;
+    //  ManuScript Mnscrp;
+    TutorialPlayer plyrMov;
 
     private void Start()
     {
-        Mnscrp = GameObject.Find("Manager").GetComponent<ManuScript>();
-        plyrMov = GameObject.Find("Player boudy").GetComponent<PlayerMovie>();
+    //    Mnscrp = GameObject.Find("Manager").GetComponent<ManuScript>();
+        plyrMov = GameObject.Find("Player").GetComponent<TutorialPlayer>();
+
         currentScore = 0;
     }
 
@@ -34,26 +34,26 @@ public class Tail : MonoBehaviour
 
     private void TailController()
     {
-        if(currentScore >= addTailInt)
+        if (currentScore >= addTailInt)
         {
             currentScore = 0;
             AddTail();
         }
-        if(scoreForheard >= addHeadInt)
+        if (scoreForheard >= addHeadInt)
         {
             scoreForheard = 0;
             plyrMov.TakeShield();
         }
 
-        if(tailRender >= 1.92f)
+        if (tailRender >= 1.92f)
         {
             tailRender = 0;
             trRen.time = tailRender;
-            Mnscrp.scoreUp5();
+            //Animation
         }
 
 
-        if(scoreForheard == (addHeadInt - 2))
+        if (scoreForheard == (addHeadInt - 2))
         {
             blurs[0].SetActive(true);
         }
@@ -61,7 +61,7 @@ public class Tail : MonoBehaviour
         {
             blurs[1].SetActive(true);
         }
-        if(scoreForheard == 0)
+        if (scoreForheard == 0)
         {
             blurs[0].SetActive(false);
             blurs[1].SetActive(false);
@@ -86,5 +86,4 @@ public class Tail : MonoBehaviour
         }
         trRen.time = tailRender;
     }
-
 }
