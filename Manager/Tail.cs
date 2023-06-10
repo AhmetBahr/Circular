@@ -18,11 +18,14 @@ public class Tail : MonoBehaviour
 
     ManuScript Mnscrp;
     PlayerMovie plyrMov;
+    GemsAnim ganim;
 
     private void Start()
     {
         Mnscrp = GameObject.Find("Manager").GetComponent<ManuScript>();
         plyrMov = GameObject.Find("Player boudy").GetComponent<PlayerMovie>();
+        ganim = GameObject.Find("Gems Anim").GetComponent<GemsAnim>();
+
         currentScore = 0;
     }
 
@@ -49,6 +52,7 @@ public class Tail : MonoBehaviour
         {
             tailRender = 0;
             trRen.time = tailRender;
+            ganim.AnimMove();
             Mnscrp.scoreUp5();
         }
 
