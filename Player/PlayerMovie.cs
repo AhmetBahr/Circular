@@ -15,8 +15,9 @@ public class PlayerMovie : MonoBehaviour
     [Header("Health")]
     [SerializeField] private int health;
     [SerializeField] private int maxHealth;
-    [SerializeField] private GameObject[] hearts; 
-
+    [SerializeField] private GameObject[] hearts;
+    [SerializeField] private bool cantouch;
+    [SerializeField] private float cantouchTime;
 
     public int Score;
 
@@ -57,6 +58,14 @@ public class PlayerMovie : MonoBehaviour
 
         transform.position = new Vector3((13 * x) / 20, (13 * y) / 20, z);
 
+        if(cantouch == false) 
+        {
+            cantouchTime -= Time.deltaTime; 
+        }
+        if(cantouchTime >= 0) 
+        {
+            cantouch = true;
+        }
 
         heartSystem();
     }
@@ -82,11 +91,15 @@ public class PlayerMovie : MonoBehaviour
 
         }
 
-
-        if (collision.transform.tag == "Enemy")
+        if (cantouch)
         {
-            deat();
-            PlayerSount.PlayerSound("expoo");
+            if (collision.transform.tag == "Enemy")
+            {
+                deat();
+                cantouch = false;
+                cantouchTime = 0.5f;
+                PlayerSount.PlayerSound("expoo");
+            }
         }
     }
 

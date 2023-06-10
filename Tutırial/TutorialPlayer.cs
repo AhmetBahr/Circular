@@ -16,6 +16,11 @@ public class TutorialPlayer : MonoBehaviour
     int Score;
 
     [SerializeField] public TMP_Text ScoreText;
+    [SerializeField] public GameObject SquearText;
+    [SerializeField] public GameObject CapsulText;
+    [SerializeField] public GameObject TapText;
+
+
     [SerializeField] private RectTransform DeathMenu;
 
 
@@ -32,6 +37,7 @@ public class TutorialPlayer : MonoBehaviour
     void Start()
     {
         tutoTail = GameObject.Find("Tail").GetComponent<TutorailTail>();
+
 
     }
 
@@ -81,7 +87,8 @@ public class TutorialPlayer : MonoBehaviour
         if (health <= 0)
         {
             DeathMenu.DOAnchorPos(new Vector2(0, 0), 0.8f);
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            gameObject.SetActive(false);
         }
 
         health--;
@@ -112,6 +119,8 @@ public class TutorialPlayer : MonoBehaviour
     }
     public void SkorUp()
     {
+        tutoTail.currentScore++;
+        tutoTail.scoreForheard++;
         Score++;
 
     }
@@ -124,11 +133,54 @@ public class TutorialPlayer : MonoBehaviour
 
         }
 
+        if(collision.transform.tag == "Tuto")
+        {
+            TextsActiveGems();
+            SlowTime();
 
+        }
+        if (collision.transform.tag == "Tuto2")
+        {
+            TextActivecaps();
+            SlowTime();
+
+        }
+        if (collision.transform.tag == "Tut")
+        {
+            SlowTime();
+            TextActiveTap();
+        }
+
+
+
+        if (collision.transform.tag == "TutoExit")
+        {
+            TextsDisctive();
+
+        }
 
         if (collision.transform.tag == "Enemy")
         {
             deat();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.transform.tag == "Tuto")
+        {
+            NormalTime();
+        }
+
+        if (collision.transform.tag == "Tuto2")
+        {
+            NormalTime();
+
+        }
+        if (collision.transform.tag == "Tut")
+        {
+            NormalTime();
+
         }
     }
 
@@ -159,5 +211,38 @@ public class TutorialPlayer : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene("Tutorial");
     }
+    private void SlowTime()
+    {
+        Time.timeScale = 0.4f;
 
+    }
+
+    private void NormalTime()
+    {
+        Time.timeScale = 1f;
+
+    }
+
+    private void TextsActiveGems()
+    {
+        SquearText.SetActive(true);
+    }
+
+    private void TextActivecaps()
+    {
+        CapsulText.SetActive(true);
+
+    }
+    private void TextActiveTap()
+    {
+        TapText.SetActive(true);
+
+    }
+
+    private void TextsDisctive()
+    {
+        SquearText.SetActive(false);
+        CapsulText.SetActive(false);
+        TapText.SetActive(false);
+    }
 }
