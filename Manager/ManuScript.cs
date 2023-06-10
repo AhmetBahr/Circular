@@ -17,6 +17,7 @@ public class ManuScript : MonoBehaviour
     [SerializeField] private RectTransform DeathMenu;
     [SerializeField] private RectTransform PauseCanvas;
     [SerializeField] private RectTransform SettingsCanvas;
+    [SerializeField] private RectTransform hearthCanvas;
 
     [Header("Texts")]
     public TMP_Text Hgscore;
@@ -35,6 +36,7 @@ public class ManuScript : MonoBehaviour
     PlayerSpawner referanskod3;
     PauseControl Referasn_PauseCont;
     public RewardAdmob AM;
+    Tail tail;
 
 
 
@@ -45,8 +47,8 @@ public class ManuScript : MonoBehaviour
         int score = 0;
         updateHighScoreText();
         Referasn_PauseCont = GameObject.Find("Manager").GetComponent<PauseControl>();
-        Referasn_PauseCont = GameObject.Find("Manager").GetComponent<PauseControl>();
-        
+        tail = GameObject.Find("Tail").GetComponent<Tail>();
+
 
 
         gems.text = PlayerPrefs.GetInt("Gems",0).ToString();
@@ -79,6 +81,7 @@ public class ManuScript : MonoBehaviour
         MainMenu.DOAnchorPos(new Vector2(0, -2500), 0.8f);
         TextCanvas.DOAnchorPos(new Vector2(0, 2500), 0.8f);
         PauseCanvas.DOAnchorPos(new Vector2(-850, 0),0.8f);
+        hearthCanvas.DOAnchorPos(new Vector2(800, 0), 0.8f);
         SettingsCanvas.DOAnchorPos(new Vector2(-1100, 0), 0.8f);
         tapToPlay.interactable = false;
 
@@ -117,6 +120,7 @@ public class ManuScript : MonoBehaviour
     public void death()
     {
         PauseCanvas.DOAnchorPos(new Vector2(-1100, 0), 0.8f);
+        hearthCanvas.DOAnchorPos(new Vector2(1600, 0), 0.8f);
         DeathMenu.DOAnchorPos(new Vector2(0, 0), 0.8f);
     }
     public void spawn()
@@ -150,6 +154,8 @@ public class ManuScript : MonoBehaviour
     {
   
         score++;
+        tail.currentScore++;
+        tail.scoreForheard++;
         PlayText.text = score.ToString();
         PlayerPrefs.SetInt("Gems", PlayerPrefs.GetInt("Gems", 0) + 1);
 
@@ -159,7 +165,6 @@ public class ManuScript : MonoBehaviour
             PlayerPrefs.SetInt("Score", score);
             updateHighScoreText();
 
-    //        Debug.Log("Score" + score);
         }
 
     }
@@ -169,6 +174,8 @@ public class ManuScript : MonoBehaviour
     {
 
         score += 2;
+        tail.currentScore += 2;
+        tail.scoreForheard += 2;
         PlayText.text = score.ToString();
         PlayerPrefs.SetInt("Gems", PlayerPrefs.GetInt("Gems", 0) + 2);
 

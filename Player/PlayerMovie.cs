@@ -12,7 +12,10 @@ public class PlayerMovie : MonoBehaviour
     int can;
     int gems;
 
+    [Header("Health")]
     [SerializeField] private int health;
+    [SerializeField] private int maxHealth;
+    [SerializeField] private GameObject[] hearts; 
 
 
     public int Score;
@@ -35,10 +38,10 @@ public class PlayerMovie : MonoBehaviour
 
     void Update()
     {
-        if (health > 2)
+        if (health >= maxHealth)
         {
-            health--;
-            tail.totalScore = 0;
+            health = maxHealth;
+            tail.scoreForheard = 0;
         }
 
         if (yon == 1)
@@ -54,6 +57,8 @@ public class PlayerMovie : MonoBehaviour
 
         transform.position = new Vector3((13 * x) / 20, (13 * y) / 20, z);
 
+
+        heartSystem();
     }
     public void Tap()
     {
@@ -96,9 +101,22 @@ public class PlayerMovie : MonoBehaviour
         }
 
         health--;
-       
-            
-       
+        tail.scoreForheard = 0;
+
+        tail.TailRemove();
+
+    }
+
+    private void heartSystem()
+    {
+        for(int i = 0; i < maxHealth; i++)
+        {
+            hearts[i].SetActive(false);
+        }
+        for(int i = 0;i < health; i++)
+        {
+            hearts[i].SetActive(true);
+        }
     }
 
     public void TakeShield()
