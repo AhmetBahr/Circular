@@ -54,11 +54,17 @@ public class ManuScript : MonoBehaviour
         Referasn_PauseCont = GameObject.Find("Manager").GetComponent<PauseControl>();
         tail = GameObject.Find("Tail").GetComponent<Tail>();
 
-        Debug.Log( "Bu da prefs " + PlayerPrefs.GetInt("Tutorial"));
 
         gems.text = PlayerPrefs.GetInt("Gems",0).ToString();
 
         tutoCanvas();
+
+        if (PlayerPrefs.GetInt("Tutorial") > 2)
+        {
+           tutorialMenu.gameObject.SetActive(false);
+           tutorialSettings.gameObject.SetActive(false);
+
+        }
     }
 
     void Update()
@@ -90,6 +96,22 @@ public class ManuScript : MonoBehaviour
         hearthCanvas.DOAnchorPos(new Vector2(800, 0), 0.8f);
         SettingsCanvas.DOAnchorPos(new Vector2(-1100, 0), 0.8f);
         tapToPlay.interactable = false;
+
+
+        StartCoroutine(disActivePanels());
+    }
+
+    IEnumerator disActivePanels()
+    {
+        yield return new WaitForSeconds(1.5f);
+
+
+        MainMenu.gameObject.SetActive(false);
+        TextCanvas.gameObject.SetActive(false);
+        SettingsCanvas.gameObject.SetActive(false);
+        MarketMenu.gameObject.SetActive(false);
+
+
 
 
     }

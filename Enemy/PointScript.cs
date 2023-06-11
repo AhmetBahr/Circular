@@ -6,47 +6,43 @@ using UnityEngine;
 public class PointScript : MonoBehaviour
 {
     [SerializeField] private GameObject point;
-    private float speed = 1.5f;
+    [SerializeField] private float speed = 1.5f;
     [SerializeField] private Rigidbody2D rb;
-    //private float backspeed = -5f;
-    private float turnInt;
-    private float RandomInt;
 
-    private float xAngle, yAngle, zAngle;
+    private float zAngle;
 
     VibratorBT Referans_Vibra;
 
 
-    void Start()
+    private void Start()
     {
         Referans_Vibra = GameObject.Find("Manager").GetComponent<VibratorBT>();
-        rb = this.GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector2(0, -speed);
+
     }
 
     void Update()
     {
-
-            Rotate();
-     
-       
-
-        Destroy(gameObject, 10);
+        Rotate();
+        Moveing();
 
     }
 
     void Rotate()
     {
-        turnInt = 0;
         point.transform.DORotate(new Vector3(0, 0, zAngle + 45), 1, RotateMode.WorldAxisAdd);
+    }
+
+    void Moveing()
+    {
+        rb = this.GetComponent<Rigidbody2D>();
+        rb.velocity = new Vector2(0, -speed);
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.tag == "Player")
         {
-           // Destroy(gameObject);
-           
 
             if (Referans_Vibra.vibra == true)
             {
