@@ -40,9 +40,24 @@ public class ManuScript : MonoBehaviour
     Tail tail;
 
 
+
     [Header("Tutorial")]
     [SerializeField] private RectTransform tutorialMenu;
     [SerializeField] private RectTransform tutorialSettings;
+
+
+    [Header("Spawner")]
+    [SerializeField] private GameObject spawn1;
+    [SerializeField] private GameObject spawn2;
+    [SerializeField] private GameObject spawn3;
+    [SerializeField] private GameObject spawn4;
+    [SerializeField] private GameObject spawn5;
+
+    PoolingEnemy   s1;
+    PoolingEnemy_2 S2;
+    PoolingEnemy_3 S3;
+    PoolingEnemy_4 S4;
+    PoolingEnemy_5 S5;
 
 
 
@@ -52,6 +67,12 @@ public class ManuScript : MonoBehaviour
         int score = 0;
         updateHighScoreText();
         Referasn_PauseCont = GameObject.Find("Manager").GetComponent<PauseControl>();
+
+        s1 = GameObject.Find("EnemySpawner_1").GetComponent<PoolingEnemy>();
+
+
+
+
         tail = GameObject.Find("Tail").GetComponent<Tail>();
 
 
@@ -69,7 +90,7 @@ public class ManuScript : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
     public void MarketMenuOn()
@@ -194,26 +215,7 @@ public class ManuScript : MonoBehaviour
             updateHighScoreText();
 
         }
-
-    }
-
-
-    public void scoreUp2()
-    {
-
-        score += 2;
-        tail.currentScore += 2;
-        tail.scoreForheard += 2;
-        PlayText.text = score.ToString();
-        PlayerPrefs.SetInt("Gems", PlayerPrefs.GetInt("Gems", 0) + 2);
-
-
-        if (score > PlayerPrefs.GetInt("Score", 0))
-        {
-            PlayerPrefs.SetInt("Score", score);
-            updateHighScoreText();
-
-        }
+        SpawnerCont();
 
     }
 
@@ -289,4 +291,34 @@ public class ManuScript : MonoBehaviour
         SceneManager.LoadScene("Tutorial");
     }
 
+
+    private void SpawnerCont()
+    {
+        if(score >= 5  &&  score <= 8)
+        {
+            s1.isStart = false;
+            spawn2.SetActive(true);
+            S2 = GameObject.Find("EnemySpawner_2").GetComponent<PoolingEnemy_2>();
+        }
+        if (score >= 9 && score <= 12)
+        {
+
+            S2.isStart = false;
+            spawn3.SetActive(true);
+        }
+
+
+    }
+
 }
+
+
+/*
+  
+       
+        S3 = GameObject.Find("EnemySpawner_3").GetComponent<PoolingEnemy_3>();
+        S4 = GameObject.Find("EnemySpawner_4").GetComponent<PoolingEnemy_4>();
+        S5 = GameObject.Find("EnemySpawner_5").GetComponent<PoolingEnemy_5>();
+
+
+*/

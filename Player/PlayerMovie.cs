@@ -137,7 +137,7 @@ public class PlayerMovie : MonoBehaviour
 
 
         health++;
-        Debug.Log(health);
+     //   Debug.Log(health);
     }
     
 
@@ -150,6 +150,6 @@ public class PlayerMovie : MonoBehaviour
     public void SkorUp2()
     {
         Score += 2;
-        referanskod2.scoreUp2();
+       // referanskod2.scoreUp2();
     }
 }
