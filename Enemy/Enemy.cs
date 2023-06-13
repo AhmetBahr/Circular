@@ -21,11 +21,6 @@ public class Enemy : MonoBehaviour
         RandomInt = Random.Range(2, 6);
     }
 
-    void Start()
-    {
-        rb = this.GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector2(0, -speed);
-    }
 
     void Update()
     {
@@ -36,9 +31,9 @@ public class Enemy : MonoBehaviour
 
             Rotate();
             RandomSayý();
+            moveing();
         }
 
-        Destroy(gameObject, 10);
 
     }
 
@@ -48,7 +43,13 @@ public class Enemy : MonoBehaviour
         enemy.transform.DORotate(new Vector3(0, 0, zAngle-90), 1, RotateMode.WorldAxisAdd);
     }
 
-   
+
+    private void moveing()
+    {
+        rb = this.GetComponent<Rigidbody2D>();
+        rb.velocity = new Vector2(0, -speed);
+
+    }
 
 
 }

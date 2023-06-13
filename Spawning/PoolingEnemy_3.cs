@@ -24,8 +24,7 @@ public class PoolingEnemy_3 : MonoBehaviour
 
     void Start()
     {
-        isStart = true;
-        StartCoroutine(AsterWave());
+        isStart = false;
 
         enemyPool = new Queue<GameObject>();
 
@@ -36,6 +35,7 @@ public class PoolingEnemy_3 : MonoBehaviour
             enemyPool.Enqueue(enemy);
 
         }
+        StartCoroutine(AsterWave());
 
     }
 
@@ -76,6 +76,7 @@ public class PoolingEnemy_3 : MonoBehaviour
                 StartCoroutine(DisableGemAfterDelay(enemy, 11.5f));
             }
         }
+        
     }
 
 
@@ -94,11 +95,10 @@ public class PoolingEnemy_3 : MonoBehaviour
     {
         while (true)
         {
-            if (isStart)
-            {
+
                 yield return new WaitForSeconds(spamTime);
                 SpawmObject();
-            }
+            
 
         }
 

@@ -34,7 +34,7 @@ public class ManuScript : MonoBehaviour
 
 
     [Header("Referans")]
-    PlayerSpawner referanskod3;
+
     PauseControl Referasn_PauseCont;
     public RewardAdmob AM;
     Tail tail;
@@ -65,11 +65,17 @@ public class ManuScript : MonoBehaviour
     {
 
         int score = 0;
+
         updateHighScoreText();
+
+
         Referasn_PauseCont = GameObject.Find("Manager").GetComponent<PauseControl>();
 
         s1 = GameObject.Find("EnemySpawner_1").GetComponent<PoolingEnemy>();
-
+        S2 = GameObject.Find("EnemySpawner_2").GetComponent<PoolingEnemy_2>();
+        S3 = GameObject.Find("EnemySpawner_3").GetComponent<PoolingEnemy_3>();
+        S4 = GameObject.Find("EnemySpawner_4").GetComponent<PoolingEnemy_4>();
+        S5 = GameObject.Find("EnemySpawner_5").GetComponent<PoolingEnemy_5>();
 
 
 
@@ -88,11 +94,8 @@ public class ManuScript : MonoBehaviour
         }
     }
 
-    void Update()
-    {
 
-    }
-
+    #region Panael
     public void MarketMenuOn()
     {
         MainMenu.DOAnchorPos(new Vector2(0, -2500), 0.8f);
@@ -108,12 +111,11 @@ public class ManuScript : MonoBehaviour
         TextCanvas.DOAnchorPos(new Vector2(0, -0), 0.8f);
 
     }
-
     public void startGame()
     {
         MainMenu.DOAnchorPos(new Vector2(0, -2500), 0.8f);
         TextCanvas.DOAnchorPos(new Vector2(0, 2500), 0.8f);
-        PauseCanvas.DOAnchorPos(new Vector2(-850, 0),0.8f);
+        PauseCanvas.DOAnchorPos(new Vector2(-850, 0), 0.8f);
         hearthCanvas.DOAnchorPos(new Vector2(800, 0), 0.8f);
         SettingsCanvas.DOAnchorPos(new Vector2(-1100, 0), 0.8f);
         tapToPlay.interactable = false;
@@ -141,7 +143,7 @@ public class ManuScript : MonoBehaviour
     {
         MainMenu.DOAnchorPos(new Vector2(0, 0), 0.8f);
         TextCanvas.DOAnchorPos(new Vector2(0, 0), 0.8f);
-      
+
 
     }
 
@@ -166,19 +168,6 @@ public class ManuScript : MonoBehaviour
 
     }
 
-    public void death()
-    {
-        PauseCanvas.DOAnchorPos(new Vector2(-1100, 0), 0.8f);
-        hearthCanvas.DOAnchorPos(new Vector2(1600, 0), 0.8f);
-        DeathMenu.DOAnchorPos(new Vector2(0, 0), 0.8f);
-    }
-    public void spawn()
-    {
-        DeathMenu.DOAnchorPos(new Vector2(0, -2377), 0.8f);
-        referanskod3.startPlayer();
-
-    }
-
     public void PausePanelOff()
     {
         PauseCanvas.DOAnchorPos(new Vector2(-1100, 0), 0.8f);
@@ -194,14 +183,24 @@ public class ManuScript : MonoBehaviour
 
     public void settingsOff()
     {
-        SettingsCanvas.DOAnchorPos(new Vector2(-1200,0), 0.5f);
+        SettingsCanvas.DOAnchorPos(new Vector2(-1200, 0), 0.5f);
         MainMenu.DOAnchorPos(new Vector2(0, 0), 0.8f);
         TextCanvas.DOAnchorPos(new Vector2(0, -0), 0.8f);
     }
 
+    public void death()
+    {
+        PauseCanvas.DOAnchorPos(new Vector2(-1100, 0), 0.8f);
+        hearthCanvas.DOAnchorPos(new Vector2(1600, 0), 0.8f);
+        DeathMenu.DOAnchorPos(new Vector2(0, 0), 0.8f);
+    }
+
+    #endregion
+
+    #region Scoreup
     public void scoreUp()
     {
-  
+
         score++;
         tail.currentScore++;
         tail.scoreForheard++;
@@ -226,18 +225,21 @@ public class ManuScript : MonoBehaviour
 
     }
 
-
-    public void Shop()
-    {
-        PlayerPrefs.SetInt("Gems", PlayerPrefs.GetInt("Gems") - 50); //ÜRÜN TEXT AZALTMASI 
-        gems.text = (PlayerPrefs.GetInt("Gems")).ToString();
-    }
-
     void updateHighScoreText()
     {
         Hgscore.text = $"{PlayerPrefs.GetInt("Score", 0)}";
         Death_Hgscore.text = $"{PlayerPrefs.GetInt("Score", 0)}";
 
+    }
+
+    #endregion
+
+
+    #region Shop
+    public void Shop()
+    {
+        PlayerPrefs.SetInt("Gems", PlayerPrefs.GetInt("Gems") - 50); //ÜRÜN TEXT AZALTMASI 
+        gems.text = (PlayerPrefs.GetInt("Gems")).ToString();
     }
 
     public void ekranYenileme()
@@ -246,27 +248,32 @@ public class ManuScript : MonoBehaviour
 
     }
 
+    #endregion
+
+    #region Addmob
     public void OnClickConfirmWatch()
     {
         //ShowVideo
-        AM.ShowRewardedAd(); 
+        AM.ShowRewardedAd();
     }
 
     public void OnUserEarnedReward()
     {
         //Kullanýcýya 20Gems
         PlayerPrefs.SetInt("Gems", PlayerPrefs.GetInt("Gems") + 20); // 20 gems ödül verildi
-        
+
         gems.text = (PlayerPrefs.GetInt("Gems")).ToString();
 
         Debug.Log("Get gems");
     }
 
+    #endregion
 
 
+    #region Totorial
     private void tutoCanvas()
     {
-        if(PlayerPrefs.GetInt("Tutorial") < 1)
+        if (PlayerPrefs.GetInt("Tutorial") < 1)
         {
             tutorialMenu.DOAnchorPos(new Vector2(0, 0), 0.2f);
 
@@ -284,41 +291,49 @@ public class ManuScript : MonoBehaviour
 
     }
 
-
     public void UploadTutorial()
     {
         PlayerPrefs.SetInt("Tutorial", 5);
         SceneManager.LoadScene("Tutorial");
     }
 
+    #endregion
+
+
+    #region Spawner Controller
 
     private void SpawnerCont()
     {
-        if(score >= 5  &&  score <= 8)
+        if (score >= 5 && score <= 10)
         {
             s1.isStart = false;
-            spawn2.SetActive(true);
-            S2 = GameObject.Find("EnemySpawner_2").GetComponent<PoolingEnemy_2>();
+            S2.isStart = true;
+
         }
-        if (score >= 9 && score <= 12)
+        if (score >= 11 && score <= 15)
         {
 
             S2.isStart = false;
-            spawn3.SetActive(true);
+            S3.isStart = true;
+        }
+        if(score >= 16 && score <= 20)
+        {
+            S3.isStart = false;
+            S4.isStart = true;
+        }
+        if( score >= 21 && score <= 25)
+        {
+            S4.isStart = false;
+            S5.isStart = true;
         }
 
 
     }
 
+
+    #endregion
+
+
+
 }
 
-
-/*
-  
-       
-        S3 = GameObject.Find("EnemySpawner_3").GetComponent<PoolingEnemy_3>();
-        S4 = GameObject.Find("EnemySpawner_4").GetComponent<PoolingEnemy_4>();
-        S5 = GameObject.Find("EnemySpawner_5").GetComponent<PoolingEnemy_5>();
-
-
-*/

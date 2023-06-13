@@ -57,6 +57,7 @@ public class PoolingEnemy : MonoBehaviour
 
     private void SpawmObject()
     {
+
         if (isStart)
         {
             GameObject enemy = GetGemFromPool();
@@ -72,14 +73,15 @@ public class PoolingEnemy : MonoBehaviour
                 StartCoroutine(DisableGemAfterDelay(enemy, 11.5f));
             }
         }
+
     }
 
     public void StartFunk()
     {
         isStart = true;
       
-        
-            StartCoroutine(AsterWave());
+        if(isStart)
+          StartCoroutine(AsterWave());
         
     }
 
@@ -97,16 +99,15 @@ public class PoolingEnemy : MonoBehaviour
     {
         while (true)
         {
-            if (isStart)
-            {
-                Debug.Log("Spawner 1 true");
-                yield return new WaitForSeconds(spamTime);
-                SpawmObject();
-            }
+            yield return new WaitForSeconds(spamTime);
+            SpawmObject();
+            
 
         }
 
     }
+
+
 
 
 }

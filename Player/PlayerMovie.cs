@@ -13,7 +13,7 @@ public class PlayerMovie : MonoBehaviour
     int gems;
 
     [Header("Health")]
-    [SerializeField] private int health;
+    [SerializeField] public int health;
     [SerializeField] private int maxHealth;
     [SerializeField] private GameObject[] hearts;
     [SerializeField] private bool cantouch;
@@ -84,12 +84,7 @@ public class PlayerMovie : MonoBehaviour
             PlayerSount.PlayerSound("point");
          
         }
-        if (collision.transform.tag == "Point2")
-        {
-            SkorUp2();
-            PlayerSount.PlayerSound("point");
 
-        }
 
         if (cantouch)
         {
@@ -135,9 +130,8 @@ public class PlayerMovie : MonoBehaviour
     public void TakeShield()
     {
 
-
         health++;
-     //   Debug.Log(health);
+
     }
     
 
@@ -147,9 +141,5 @@ public class PlayerMovie : MonoBehaviour
         referanskod2.scoreUp();
     }
 
-    public void SkorUp2()
-    {
-        Score += 2;
-       // referanskod2.scoreUp2();
-    }
+
 }

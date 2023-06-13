@@ -72,6 +72,15 @@ public class Tail : MonoBehaviour
 
         }
 
+        if(plyrMov.health > 0)
+        {
+            blurs[2].SetActive(true);
+
+        }
+        else
+        {
+            blurs[2].SetActive(false);
+        }
 
 
     }

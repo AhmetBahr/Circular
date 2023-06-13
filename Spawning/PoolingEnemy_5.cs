@@ -24,8 +24,8 @@ public class PoolingEnemy_5 : MonoBehaviour
 
     void Start()
     {
-        isStart = true;
-        StartCoroutine(AsterWave());
+        isStart = false;
+
         enemyPool = new Queue<GameObject>();
 
         for (int i = 0; i < POOL_SIZE_E1; i++)
@@ -35,6 +35,7 @@ public class PoolingEnemy_5 : MonoBehaviour
             enemyPool.Enqueue(enemy);
 
         }
+        StartCoroutine(AsterWave());
 
     }
 
@@ -75,6 +76,7 @@ public class PoolingEnemy_5 : MonoBehaviour
                 StartCoroutine(DisableGemAfterDelay(enemy, 11.5f));
             }
         }
+
     }
 
 
