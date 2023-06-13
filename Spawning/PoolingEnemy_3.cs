@@ -103,4 +103,30 @@ public class PoolingEnemy_3 : MonoBehaviour
         }
 
     }
+
+    public void StartThinkgs()
+    {
+        StartCoroutine(BlockDestroy());
+    }
+
+    private IEnumerator BlockDestroy()
+    {
+        //  Debug.Log("Delete starting");
+
+        yield return new WaitForSeconds(8);
+
+        for (int i = 0; i < POOL_SIZE_E1; i++)
+        {
+            GameObject enemy = GetGemFromPool();
+            Destroy(enemy);
+
+          //  Debug.Log(enemyPool.Count);
+            yield return new WaitForSeconds(2);
+
+        }
+
+        if (enemyPool.Count <= 0)
+            Destroy(gameObject);
+
+    }
 }

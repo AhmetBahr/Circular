@@ -308,6 +308,7 @@ public class ManuScript : MonoBehaviour
         {
             s1.isStart = false;
             S2.isStart = true;
+            s1.StartThinkgs();
 
         }
         if (score >= 11 && score <= 15)
@@ -315,16 +316,21 @@ public class ManuScript : MonoBehaviour
 
             S2.isStart = false;
             S3.isStart = true;
+            S2.StartThinkgs();
         }
         if(score >= 16 && score <= 20)
         {
             S3.isStart = false;
             S4.isStart = true;
+            S3.StartThinkgs();
+
         }
-        if( score >= 21 && score <= 25)
+        if ( score >= 21 && score <= 25)
         {
             S4.isStart = false;
             S5.isStart = true;
+            S4.StartThinkgs();
+
         }
 
 
