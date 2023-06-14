@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerMovie : MonoBehaviour
 {
-    float timeCounter = 0;
-    public float speed = 2.5f;
-    float width = 1.5f;
-    float height = 1.5f;
-    int yon = 1;
-    int can;
-    int gems;
+
+    [Header("Core")]
+    [SerializeField] private float speed = 2.5f;
+     private float timeCounter = 0;
+     private float width = 1f;
+     private float height = 1f;
+     private int yon = 1;
 
     [Header("Health")]
     [SerializeField] public int health;
@@ -19,13 +19,10 @@ public class PlayerMovie : MonoBehaviour
     [SerializeField] private bool cantouch;
     [SerializeField] private float cantouchTime;
 
-    public int Score;
+   [SerializeField] public int Score;
 
     ManuScript referanskod2;
     Tail tail;
-
-
-    bool isDeath;
 
     void Start()
     {
@@ -33,7 +30,7 @@ public class PlayerMovie : MonoBehaviour
         tail = GameObject.Find("Tail").GetComponent<Tail>();
 
         Score = 0;
-        can = 2;
+
     }
 
 
@@ -56,7 +53,7 @@ public class PlayerMovie : MonoBehaviour
         float y = Mathf.Sin(timeCounter) * height;
         float z = -3;
 
-        transform.position = new Vector3((13 * x) / 20, (13 * y) / 20, z);
+        transform.position = new Vector2( x, y );
 
         if(cantouch == false) 
         {
@@ -67,7 +64,9 @@ public class PlayerMovie : MonoBehaviour
             cantouch = true;
         }
 
-        heartSystem();
+
+        if (Time.frameCount % 3 == 0)
+            heartSystem();
     }
     public void Tap()
     {
@@ -78,7 +77,8 @@ public class PlayerMovie : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.tag == "Point")
+
+        if(collision.CompareTag("Point"))
         {
             SkorUp();
             PlayerSount.PlayerSound("point");
@@ -88,7 +88,7 @@ public class PlayerMovie : MonoBehaviour
 
         if (cantouch)
         {
-            if (collision.transform.tag == "Enemy")
+            if (collision.CompareTag("Enemy"))
             {
                 deat();
                 cantouch = false;

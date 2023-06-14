@@ -28,12 +28,15 @@ public class Enemy : MonoBehaviour
 
         if (turnInt >= RandomInt)
         {
-
-            Rotate();
-            RandomSayý();
-            moveing();
+            
+                Rotate();
+                RandomSayý();
+            
         }
 
+
+        if (Time.frameCount % 3 == 0)
+            moveing();
 
     }
 

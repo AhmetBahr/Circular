@@ -127,25 +127,25 @@ public class TutorialPlayer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.tag == "Point")
+        if (collision.CompareTag("Point"))
         {
             SkorUp();
 
         }
 
-        if(collision.transform.tag == "Tuto")
+        if(collision.CompareTag("Tuto"))
         {
             TextsActiveGems();
             SlowTime();
 
         }
-        if (collision.transform.tag == "Tuto2")
+        if (collision.CompareTag("Tuto2"))
         {
             TextActivecaps();
             SlowTime();
 
         }
-        if (collision.transform.tag == "Tut")
+        if (collision.CompareTag("Tut"))
         {
             SlowTime();
             TextActiveTap();
@@ -153,13 +153,13 @@ public class TutorialPlayer : MonoBehaviour
 
 
 
-        if (collision.transform.tag == "TutoExit")
+        if (collision.CompareTag("TutoExit"))
         {
             TextsDisctive();
 
         }
 
-        if (collision.transform.tag == "Enemy")
+        if (collision.CompareTag("Enemy"))
         {
             deat();
         }
@@ -167,17 +167,17 @@ public class TutorialPlayer : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.transform.tag == "Tuto")
+        if(collision.CompareTag("Tuto"))
         {
             NormalTime();
         }
 
-        if (collision.transform.tag == "Tuto2")
+        if (collision.CompareTag("Tuto2"))
         {
             NormalTime();
 
         }
-        if (collision.transform.tag == "Tut")
+        if (collision.CompareTag("Tut"))
         {
             NormalTime();
 

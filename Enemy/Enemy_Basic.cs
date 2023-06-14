@@ -21,7 +21,8 @@ public class Enemy_Basic : MonoBehaviour
     }
     private void Update()
     {
-        moveing();
+        if (Time.frameCount % 3 == 0)
+            moveing();
     }
 
     private void moveing()

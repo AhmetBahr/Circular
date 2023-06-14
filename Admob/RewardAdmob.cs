@@ -27,9 +27,9 @@ public class RewardAdmob : MonoBehaviour
             rewardedAd.Destroy();
             rewardedAd = null;
         }
-
+#if UNITY_EDITOR
         Debug.Log("Loading the rewarded ad.");
-
+#endif
         // create our request used to load the ad.
         var adRequest = new AdRequest.Builder().Build();
 
@@ -82,22 +82,30 @@ public class RewardAdmob : MonoBehaviour
         // Raised when an impression is recorded for an ad.
         ad.OnAdImpressionRecorded += () =>
         {
+#if UNITY_EDITOR
             Debug.Log("Rewarded ad recorded an impression.");
+#endif
         };
         // Raised when a click is recorded for an ad.
         ad.OnAdClicked += () =>
         {
+#if UNITY_EDITOR
             Debug.Log("Rewarded ad was clicked.");
+#endif
         };
         // Raised when an ad opened full screen content.
         ad.OnAdFullScreenContentOpened += () =>
         {
+#if UNITY_EDITOR
             Debug.Log("Rewarded ad full screen content opened.");
+#endif
         };
         // Raised when the ad closed full screen content.
         ad.OnAdFullScreenContentClosed += () =>
         {
+#if UNITY_EDITOR
             Debug.Log("Rewarded ad full screen content closed.");
+#endif
             LoadRewardedAd();
         };
         // Raised when the ad failed to open full screen content.
@@ -108,12 +116,5 @@ public class RewardAdmob : MonoBehaviour
             LoadRewardedAd();
         };
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
 
 }

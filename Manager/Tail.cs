@@ -31,7 +31,8 @@ public class Tail : MonoBehaviour
 
     private void Update()
     {
-        TailController();
+        if (Time.frameCount % 3 == 0)
+            TailController();
 
     }
 

@@ -16,15 +16,17 @@ public class PointScript : MonoBehaviour
 
     private void Start()
     {
-        Referans_Vibra = GameObject.Find("Manager").GetComponent<VibratorBT>();
-
-    }
+        Referans_Vibra = GameObject.FindWithTag("Manager").GetComponent<VibratorBT>();
+    } 
 
     void Update()
     {
-        Rotate();
-        Moveing();
 
+        if (Time.frameCount % 3 == 0)
+        {
+            Rotate();
+            Moveing();
+        }
     }
 
     void Rotate()
@@ -41,7 +43,7 @@ public class PointScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.tag == "Player")
+        if (collision.CompareTag("Player"))
         {
 
             if (Referans_Vibra.vibra == true)
