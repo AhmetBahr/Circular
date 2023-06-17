@@ -190,11 +190,18 @@ public class ManuScript : MonoBehaviour
 		hearthCanvas.DOAnchorPos(new Vector2(1600, 0), 0.8f);
 		DeathMenu.DOAnchorPos(new Vector2(0, 0), 0.8f);
 	}
+	public void Rebornscrean()
+	{
+        PauseCanvas.DOAnchorPos(new Vector2(-850, 0), 0.8f);
+        hearthCanvas.DOAnchorPos(new Vector2(800, 0), 0.8f);
+        DeathMenu.DOAnchorPos(new Vector2(0, -2500), 0.8f);
 
-	#endregion
+    }
 
-	#region Scoreup
-	public void scoreUp()
+    #endregion
+
+    #region Scoreup
+    public void scoreUp()
 	{
 
 		score++;

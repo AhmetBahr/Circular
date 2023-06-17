@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 
@@ -8,15 +9,15 @@ public class PlayerMovie : MonoBehaviour
     [Header("Core")]
     [SerializeField] private float speed = 2.5f;
      private float timeCounter = 0;
-     private float width = 1f;
-     private float height = 1f;
+     private float width = 1.2f;
+     private float height = 1.2f;
      private int yon = 1;
 
     [Header("Health")]
     [SerializeField] public int health;
     [SerializeField] private int maxHealth;
     [SerializeField] private GameObject[] hearts;
-    [SerializeField] private bool cantouch;
+    [SerializeField] private bool touchable;
     [SerializeField] private float cantouchTime;
 
    [SerializeField] public int Score;
@@ -55,13 +56,13 @@ public class PlayerMovie : MonoBehaviour
 
         transform.position = new Vector2( x, y );
 
-        if(cantouch == false) 
+        if(touchable == false) 
         {
             cantouchTime -= Time.deltaTime; 
         }
         if(cantouchTime >= 0) 
         {
-            cantouch = true;
+            touchable = true;
         }
 
 
@@ -77,21 +78,23 @@ public class PlayerMovie : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
-        if(collision.CompareTag("Point"))
+        if (touchable)
         {
-            SkorUp();
-            PlayerSount.PlayerSound("point");
-         
+            if (collision.CompareTag("Point"))
+            {
+                SkorUp();
+                PlayerSount.PlayerSound("point");
+
+            }
         }
 
 
-        if (cantouch)
+        if (touchable)
         {
             if (collision.CompareTag("Enemy"))
             {
                 deat();
-                cantouch = false;
+                touchable = false;
                 cantouchTime = 0.5f;
                 PlayerSount.PlayerSound("expoo");
             }
@@ -105,13 +108,26 @@ public class PlayerMovie : MonoBehaviour
         if(health <= 0)
         {
             referanskod2.death();
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+            
         }
 
         health--;
         tail.scoreForheard = 0;
 
         tail.TailRemove();
+
+    }
+
+    public void Reborn()
+    {
+        referanskod2.Rebornscrean();
+        gameObject.SetActive(true);
+        TakeShield();
+        //recounter anim 
+        Time.timeScale = 0.5f;
+
+        StartCoroutine(Restarttr());     
 
     }
 
@@ -141,5 +157,18 @@ public class PlayerMovie : MonoBehaviour
         referanskod2.scoreUp();
     }
 
+
+
+
+
+    private IEnumerator Restarttr()
+    {
+        yield return new WaitForSeconds(1.5f);
+
+        Time.timeScale = 1f;
+
+
+
+    }
 
 }
